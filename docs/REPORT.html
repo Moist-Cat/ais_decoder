@@ -1,0 +1,77 @@
+
+<!-- saved from url=(0040)http://127.0.0.1:5050/reports/1/markdown -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><p>REPORTE: 1</p>
+<p>FECHA: 2022-06-10 08:42:18.013980</p>
+<h1>Objetivo:</h1>
+<h2>Tarea #: 1</h2>
+<pre><code>* Objetivo: Crear una estructura que acepte un mensaje AIS
+
+* Estado: 0
+
+* Prioridad: 10
+
+* Solucion:
+
+
+* Observaciones:
+    Campos:
+        - 1. Tipo: str
+        - 2. numero de framentos: int
+        - 3. # de fragmento: int
+        - 4. Id del mensaje secuencial: int ó ""
+        - 5. Canal de radio: str
+        - 6. Mensaje: str
+        - 7. Fill bits * checksum
+
+
+* Creada: 2022-06-10 08:42:18.006433
+
+* Actualizada: 2022-06-10 09:47:40.458986
+
+* Finalizada: None
+</code></pre>
+<h2>Tarea #: 2</h2>
+<pre><code>* Objetivo: Validadores
+
+* Estado: 0
+
+* Prioridad: 10
+
+* Solucion:
+
+
+* Observaciones:
+    1. longitud: 80
+    2. Validar tipo: empieza por "!" + [A-Z]
+    3. Fragmentos y no. fragmento: [0-9]
+    4. Id del msg secuencial: Union([0-9], "")
+    5. Radio Channel: [A-Z]
+    6. Mensaje: isacii, len &lt; 52
+    7. Fill bits * checksum: [0-9]+\*[A-Z0-9]+
+
+* Creada: 2022-06-10 08:42:18.006433
+
+* Actualizada: 2022-06-10 08:42:18.006499
+
+* Finalizada: None
+</code></pre>
+<hr>
+<h1>Observaciones:</h1>
+<h2>Overall</h2>
+<p>AIS data is encapsulated within the Marine Standard NMEA protocol, which defines Standands for communication between wired electonic ship devices. NMEA defines many different sentences, two of which are normally used for containing AIS data named !AIVDM and !AIVDO. The content of both these sentences are identical (!AIVDM is transmitted, !AIVDO is on board). 2022-06-10 08:42:18.013980</p>
+<h2>NMEA Sentences</h2>
+<p>NMEA sentences are split into words separated by a comma, and have a maximum length of 80 characters.
+eg: !AIVDM,1,1,,B,13PRrB0000OvbS@NhA9=oPbr0&lt;0u,0<em>58
+The <em>first</em> word !AIVDM is the name of the sentence, <em>the last 2 characters</em> are the <em>checksum</em>.
+The AIS <em>Payload</em> is the <em>6th word</em>: 13PRrB0000OvbS@NhA9=oPbr0&lt;0u
+As the </em>maximum size<em> of the </em>whole<em> sentence is </em>80<em> characters, the </em>payload<em> can be no longer than </em>51<em> characters, and may be shorter.
+Because the permitted characters in a NMEA sentence are a subset of the 8-bit </em>ASCII* character set, and the payload must be able to contain all bits, each 8 bit character in the payload can only represent 6 bits of data. Every 6 bits of AIS data has to be encoded into one 8 bit ASCII character, prior to transmission. One NMEA AIS sentence can only contain a maximum of 306 bits.</p>
+<p>Has seven fields:</p>
+<pre><code>- Sentence Type: str, starts with "!", [A-Z]
+- Number of fragments: int
+- Fragment No.: int
+- Secuential message id: int
+- Radio Channel: char, [A-Z]
+- Payload: ascii chars, len &lt; 51
+- checksum: Hexa, [0-9]\*[0-9A-Z]+
+</code></pre></body></html>

@@ -4,8 +4,8 @@ from pathlib import Path
 with open("README.md", "r") as file:
     long_description = file.read()
 
-with open("requirements/pro.txt") as file:
-    REQUIREMENTS = file.read().split("\n")
+#with open("requirements.txt") as file:
+#    REQUIREMENTS = file.read().split("\n")
 
 setuptools.setup(
      name="ais_decoder",  
@@ -16,7 +16,7 @@ setuptools.setup(
      long_description=long_description,
    long_description_content_type="text/markdown",
      url="https://github.com/Moist-Cat/",
-     install_requires=REQUIREMENTS,
+#     install_requires=REQUIREMENTS,
      include_package_data=True,
      package_dir={"":"src"},
      packages=setuptools.find_packages(where="src"),

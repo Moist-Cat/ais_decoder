@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module models</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>models</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/luis/aWerk/AIS/ais_decoder.pkg/src/ais_decoder/models.py~">/home/luis/aWerk/AIS/ais_decoder.pkg/src/ais_decoder/models.py~</a></font></td></tr></table>
+    <p><tt>Data&nbsp;models&nbsp;and&nbsp;validators</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="abc.html#ABC">abc.ABC</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="models.html#Validator">Validator</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="models.html#AlphanumOrEmptyValidator">AlphanumOrEmptyValidator</a>
+</font></dt><dt><font face="helvetica, arial"><a href="models.html#CheckSumValidator">CheckSumValidator</a>
+</font></dt><dt><font face="helvetica, arial"><a href="models.html#DigitOrEmptyValidator">DigitOrEmptyValidator</a>
+</font></dt><dt><font face="helvetica, arial"><a href="models.html#DigitValidator">DigitValidator</a>
+</font></dt><dt><font face="helvetica, arial"><a href="models.html#MsgTypeValidator">MsgTypeValidator</a>
+</font></dt><dt><font face="helvetica, arial"><a href="models.html#PayloadValidator">PayloadValidator</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="builtins.html#Exception">builtins.Exception</a>(<a href="builtins.html#BaseException">builtins.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="models.html#ValidationError">ValidationError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="models.html#NMEASentence">NMEASentence</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AlphanumOrEmptyValidator">class <strong>AlphanumOrEmptyValidator</strong></a>(<a href="models.html#Validator">Validator</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Accept&nbsp;only&nbsp;single&nbsp;letters,&nbsp;a&nbsp;digit&nbsp;or&nbsp;empty<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#AlphanumOrEmptyValidator">AlphanumOrEmptyValidator</a></dd>
+<dd><a href="models.html#Validator">Validator</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<dl><dt><strong>accept</strong> = '^([A-Z0-9]|)$'</dl>
+
+<hr>
+Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><a name="AlphanumOrEmptyValidator-__get__"><strong>__get__</strong></a>(self, instance: Any, owner: type) -&gt; Any</dt></dl>
+
+<dl><dt><a name="AlphanumOrEmptyValidator-__set__"><strong>__set__</strong></a>(self, instance: Any, value: str)</dt><dd><tt>Run&nbsp;validators</tt></dd></dl>
+
+<dl><dt><a name="AlphanumOrEmptyValidator-__set_name__"><strong>__set_name__</strong></a>(self, owner, name)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__annotations__</strong> = {'accept': &lt;class 'str'&gt;, 'deny': typing.Union[str, NoneType]}</dl>
+
+<dl><dt><strong>deny</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CheckSumValidator">class <strong>CheckSumValidator</strong></a>(<a href="models.html#Validator">Validator</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Fill&nbsp;bits&nbsp;*&nbsp;checksum.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#CheckSumValidator">CheckSumValidator</a></dd>
+<dd><a href="models.html#Validator">Validator</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<dl><dt><strong>accept</strong> = r'^[0-9]\*[A-Z0-9]{2}$'</dl>
+
+<hr>
+Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><a name="CheckSumValidator-__get__"><strong>__get__</strong></a>(self, instance: Any, owner: type) -&gt; Any</dt></dl>
+
+<dl><dt><a name="CheckSumValidator-__set__"><strong>__set__</strong></a>(self, instance: Any, value: str)</dt><dd><tt>Run&nbsp;validators</tt></dd></dl>
+
+<dl><dt><a name="CheckSumValidator-__set_name__"><strong>__set_name__</strong></a>(self, owner, name)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__annotations__</strong> = {'accept': &lt;class 'str'&gt;, 'deny': typing.Union[str, NoneType]}</dl>
+
+<dl><dt><strong>deny</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DigitOrEmptyValidator">class <strong>DigitOrEmptyValidator</strong></a>(<a href="models.html#Validator">Validator</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Accept&nbsp;digits&nbsp;or&nbsp;an&nbsp;empty&nbsp;string&nbsp;(for&nbsp;the&nbsp;secuential&nbsp;id&nbsp;message,&nbsp;an&nbsp;optional&nbsp;field)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#DigitOrEmptyValidator">DigitOrEmptyValidator</a></dd>
+<dd><a href="models.html#Validator">Validator</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<dl><dt><strong>accept</strong> = '^([0-9]|)$'</dl>
+
+<hr>
+Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><a name="DigitOrEmptyValidator-__get__"><strong>__get__</strong></a>(self, instance: Any, owner: type) -&gt; Any</dt></dl>
+
+<dl><dt><a name="DigitOrEmptyValidator-__set__"><strong>__set__</strong></a>(self, instance: Any, value: str)</dt><dd><tt>Run&nbsp;validators</tt></dd></dl>
+
+<dl><dt><a name="DigitOrEmptyValidator-__set_name__"><strong>__set_name__</strong></a>(self, owner, name)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__annotations__</strong> = {'accept': &lt;class 'str'&gt;, 'deny': typing.Union[str, NoneType]}</dl>
+
+<dl><dt><strong>deny</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DigitValidator">class <strong>DigitValidator</strong></a>(<a href="models.html#Validator">Validator</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Accept&nbsp;only&nbsp;digits<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#DigitValidator">DigitValidator</a></dd>
+<dd><a href="models.html#Validator">Validator</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<dl><dt><strong>accept</strong> = '^[0-9]$'</dl>
+
+<hr>
+Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><a name="DigitValidator-__get__"><strong>__get__</strong></a>(self, instance: Any, owner: type) -&gt; Any</dt></dl>
+
+<dl><dt><a name="DigitValidator-__set__"><strong>__set__</strong></a>(self, instance: Any, value: str)</dt><dd><tt>Run&nbsp;validators</tt></dd></dl>
+
+<dl><dt><a name="DigitValidator-__set_name__"><strong>__set_name__</strong></a>(self, owner, name)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__annotations__</strong> = {'accept': &lt;class 'str'&gt;, 'deny': typing.Union[str, NoneType]}</dl>
+
+<dl><dt><strong>deny</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MsgTypeValidator">class <strong>MsgTypeValidator</strong></a>(<a href="models.html#Validator">Validator</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Accept&nbsp;only&nbsp;messages&nbsp;like&nbsp;'!ABCD'<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#MsgTypeValidator">MsgTypeValidator</a></dd>
+<dd><a href="models.html#Validator">Validator</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<dl><dt><strong>accept</strong> = r'^(!|\$)[A-Z]+$'</dl>
+
+<hr>
+Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><a name="MsgTypeValidator-__get__"><strong>__get__</strong></a>(self, instance: Any, owner: type) -&gt; Any</dt></dl>
+
+<dl><dt><a name="MsgTypeValidator-__set__"><strong>__set__</strong></a>(self, instance: Any, value: str)</dt><dd><tt>Run&nbsp;validators</tt></dd></dl>
+
+<dl><dt><a name="MsgTypeValidator-__set_name__"><strong>__set_name__</strong></a>(self, owner, name)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__annotations__</strong> = {'accept': &lt;class 'str'&gt;, 'deny': typing.Union[str, NoneType]}</dl>
+
+<dl><dt><strong>deny</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NMEASentence">class <strong>NMEASentence</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#NMEASentence">NMEASentence</a>(msg:&nbsp;str)<br>
+&nbsp;<br>
+NMEA&nbsp;sentence&nbsp;class.&nbsp;It&nbsp;validates&nbsp;a&nbsp;raw&nbsp;string&nbsp;and<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="NMEASentence-__init__"><strong>__init__</strong></a>(self, msg: str)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="NMEASentence-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>checksum</strong></dt>
+<dd><tt>Fill&nbsp;bits&nbsp;*&nbsp;checksum.</tt></dd>
+</dl>
+<dl><dt><strong>id_msg</strong></dt>
+<dd><tt>Accept&nbsp;digits&nbsp;or&nbsp;an&nbsp;empty&nbsp;string&nbsp;(for&nbsp;the&nbsp;secuential&nbsp;id&nbsp;message,&nbsp;an&nbsp;optional&nbsp;field)</tt></dd>
+</dl>
+<dl><dt><strong>msg_type</strong></dt>
+<dd><tt>Accept&nbsp;only&nbsp;messages&nbsp;like&nbsp;'!ABCD'</tt></dd>
+</dl>
+<dl><dt><strong>num_fragment</strong></dt>
+<dd><tt>Accept&nbsp;only&nbsp;digits</tt></dd>
+</dl>
+<dl><dt><strong>num_fragments</strong></dt>
+<dd><tt>Accept&nbsp;only&nbsp;digits</tt></dd>
+</dl>
+<dl><dt><strong>payload</strong></dt>
+<dd><tt>Accept&nbsp;only&nbsp;ascii&nbsp;characters.&nbsp;From&nbsp;the&nbsp;space&nbsp;to&nbsp;tilde</tt></dd>
+</dl>
+<dl><dt><strong>radio_channel</strong></dt>
+<dd><tt>Accept&nbsp;only&nbsp;single&nbsp;letters,&nbsp;a&nbsp;digit&nbsp;or&nbsp;empty</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {'checksum': &lt;class 'str'&gt;, 'id_msg': &lt;class 'str'&gt;, 'msg_type': &lt;class 'str'&gt;, 'num_fragment': &lt;class 'str'&gt;, 'num_fragments': &lt;class 'str'&gt;, 'payload': &lt;class 'str'&gt;, 'radio_channel': &lt;class 'str'&gt;}</dl>
+
+<dl><dt><strong>__fields__</strong> = ('msg_type', 'num_fragments', 'num_fragment', 'id_msg', 'radio_channel', 'payload', 'checksum')</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PayloadValidator">class <strong>PayloadValidator</strong></a>(<a href="models.html#Validator">Validator</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Accept&nbsp;only&nbsp;ascii&nbsp;characters.&nbsp;From&nbsp;the&nbsp;space&nbsp;to&nbsp;tilde<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#PayloadValidator">PayloadValidator</a></dd>
+<dd><a href="models.html#Validator">Validator</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<dl><dt><strong>accept</strong> = '^[ -~]+$'</dl>
+
+<hr>
+Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><a name="PayloadValidator-__get__"><strong>__get__</strong></a>(self, instance: Any, owner: type) -&gt; Any</dt></dl>
+
+<dl><dt><a name="PayloadValidator-__set__"><strong>__set__</strong></a>(self, instance: Any, value: str)</dt><dd><tt>Run&nbsp;validators</tt></dd></dl>
+
+<dl><dt><a name="PayloadValidator-__set_name__"><strong>__set_name__</strong></a>(self, owner, name)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="models.html#Validator">Validator</a>:<br>
+<dl><dt><strong>__annotations__</strong> = {'accept': &lt;class 'str'&gt;, 'deny': typing.Union[str, NoneType]}</dl>
+
+<dl><dt><strong>deny</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ValidationError">class <strong>ValidationError</strong></a>(<a href="builtins.html#Exception">builtins.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Common&nbsp;base&nbsp;class&nbsp;for&nbsp;all&nbsp;non-exit&nbsp;exceptions.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#ValidationError">ValidationError</a></dd>
+<dd><a href="builtins.html#Exception">builtins.Exception</a></dd>
+<dd><a href="builtins.html#BaseException">builtins.BaseException</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+<dl><dt><a name="ValidationError-__init__"><strong>__init__</strong></a>(self, /, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Static methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+<dl><dt><a name="ValidationError-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><a name="ValidationError-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><tt>Implement&nbsp;delattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="ValidationError-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="ValidationError-__reduce__"><strong>__reduce__</strong></a>(...)</dt><dd><tt>Helper&nbsp;for&nbsp;pickle.</tt></dd></dl>
+
+<dl><dt><a name="ValidationError-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="ValidationError-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><tt>Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</tt></dd></dl>
+
+<dl><dt><a name="ValidationError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ValidationError-__str__"><strong>__str__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="ValidationError-with_traceback"><strong>with_traceback</strong></a>(...)</dt><dd><tt><a href="builtins.html#Exception">Exception</a>.<a href="#ValidationError-with_traceback">with_traceback</a>(tb)&nbsp;--<br>
+set&nbsp;self.<strong>__traceback__</strong>&nbsp;to&nbsp;tb&nbsp;and&nbsp;return&nbsp;self.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><strong>__cause__</strong></dt>
+<dd><tt>exception&nbsp;cause</tt></dd>
+</dl>
+<dl><dt><strong>__context__</strong></dt>
+<dd><tt>exception&nbsp;context</tt></dd>
+</dl>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>__suppress_context__</strong></dt>
+</dl>
+<dl><dt><strong>__traceback__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Validator">class <strong>Validator</strong></a>(<a href="abc.html#ABC">abc.ABC</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Use&nbsp;regex&nbsp;to&nbsp;validate&nbsp;data<br>
+&nbsp;<br>
+:param&nbsp;accept:&nbsp;&nbsp;raw&nbsp;regex&nbsp;to&nbsp;search&nbsp;for<br>
+:param&nbsp;deny:&nbsp;regex&nbsp;that&nbsp;cannot&nbsp;be&nbsp;in&nbsp;the&nbsp;string<br>
+&nbsp;<br>
+:param&nbsp;data:&nbsp;validated&nbsp;string<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#Validator">Validator</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Validator-__get__"><strong>__get__</strong></a>(self, instance: Any, owner: type) -&gt; Any</dt></dl>
+
+<dl><dt><a name="Validator-__set__"><strong>__set__</strong></a>(self, instance: Any, value: str)</dt><dd><tt>Run&nbsp;validators</tt></dd></dl>
+
+<dl><dt><a name="Validator-__set_name__"><strong>__set_name__</strong></a>(self, owner, name)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<dl><dt><strong>__annotations__</strong> = {'accept': &lt;class 'str'&gt;, 'deny': typing.Union[str, NoneType]}</dl>
+
+<dl><dt><strong>accept</strong> = ''</dl>
+
+<dl><dt><strong>deny</strong> = None</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Any</strong> = typing.Any<br>
+<strong>Union</strong> = typing.Union</td></tr></table>
+</body></html>
