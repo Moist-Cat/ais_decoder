@@ -13,8 +13,10 @@ class Validator(ABC): # pylint: disable=R0903
     """
     Use regex to validate data
 
-    :param accept:  raw regex to search for
-    :param deny: regex that cannot be in the string
+    Regexed must be passed already compiler to avoid compiling it
+    each time a validator is run. (Benchmark test showed a ~50% time saved)
+    :param accept:  raw regex.compile instance to search for
+    :param deny: regex.compile instance that cannot be in the string
 
     :param data: validated string
     """
@@ -30,11 +32,11 @@ class Validator(ABC): # pylint: disable=R0903
     def __set__(self, instance: Any, value: str):
         """Run validators"""
         # optional, leave the default
-        accept = bool(re.compile(self.accept).search(value))
+        accept = bool(self.accept.search(value))
 
         deny = True
         if self.deny is not None:
-            deny = not re.compile(self.deny).search(value)
+            deny = not self.search(value)
 
         if accept and deny:
             setattr(instance, self.private_name, value)
@@ -43,27 +45,27 @@ class Validator(ABC): # pylint: disable=R0903
 
 class MsgTypeValidator(Validator): # pylint: disable=R0903
     """Accept only messages like '!ABCD'"""
-    accept = r"^(!|\$)[A-Z]+$"
+    accept = re.compile(r"^(!|\$)[A-Z]+$")
 
 class DigitValidator(Validator): # pylint: disable=R0903
     """Accept only digits"""
-    accept = r"^[0-9]$"
+    accept = re.compile(r"^[0-9]$")
 
 class DigitOrEmptyValidator(Validator): # pylint: disable=R0903
     """Accept digits or an empty string (for the secuential id message, an optional field)"""
-    accept = r"^([0-9]|)$"
+    accept = re.compile(r"^([0-9]|)$")
 
 class AlphanumOrEmptyValidator(Validator): # pylint: disable=R0903
     """Accept only single letters, a digit or empty"""
-    accept = r"^([A-Z0-9]|)$"
+    accept = re.compile(r"^([A-Z0-9]|)$")
 
 class PayloadValidator(Validator): # pylint: disable=R0903
     """Accept only ascii characters. From the space to tilde"""
-    accept = r"^[ -~]+$"
+    accept = re.compile(r"^[ -~]+$")
 
 class CheckSumValidator(Validator): # pylint: disable=R0903
     """ Fill bits * checksum."""
-    accept = r"^[0-9]\*[A-Z0-9]{2}$"
+    accept = re.compile(r"^[0-9]\*[A-Z0-9]{2}$")
 
 class NMEASentence: #pylint: disable=R0902,R0903
     """NMEA sentence class. It validates a raw NMEA sentence """

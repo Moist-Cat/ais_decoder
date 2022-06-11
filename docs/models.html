@@ -8,7 +8,7 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>models</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/luis/aWerk/AIS/ais_decoder.pkg/src/ais_decoder/models.py~">/home/luis/aWerk/AIS/ais_decoder.pkg/src/ais_decoder/models.py~</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/luis/aWerk/AIS/ais_decoder.pkg/src/ais_decoder/models.py">/home/luis/aWerk/AIS/ais_decoder.pkg/src/ais_decoder/models.py</a></font></td></tr></table>
     <p><tt>Data&nbsp;models&nbsp;and&nbsp;validators</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
@@ -74,7 +74,7 @@
 Data and other attributes defined here:<br>
 <dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
 
-<dl><dt><strong>accept</strong> = '^([A-Z0-9]|)$'</dl>
+<dl><dt><strong>accept</strong> = re.compile('^([A-Z0-9]|)$')</dl>
 
 <hr>
 Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
@@ -117,7 +117,7 @@ Data and other attributes inherited from <a href="models.html#Validator">Validat
 Data and other attributes defined here:<br>
 <dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
 
-<dl><dt><strong>accept</strong> = r'^[0-9]\*[A-Z0-9]{2}$'</dl>
+<dl><dt><strong>accept</strong> = re.compile('^[0-9]\\*[A-Z0-9]{2}$')</dl>
 
 <hr>
 Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
@@ -160,7 +160,7 @@ Data and other attributes inherited from <a href="models.html#Validator">Validat
 Data and other attributes defined here:<br>
 <dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
 
-<dl><dt><strong>accept</strong> = '^([0-9]|)$'</dl>
+<dl><dt><strong>accept</strong> = re.compile('^([0-9]|)$')</dl>
 
 <hr>
 Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
@@ -203,7 +203,7 @@ Data and other attributes inherited from <a href="models.html#Validator">Validat
 Data and other attributes defined here:<br>
 <dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
 
-<dl><dt><strong>accept</strong> = '^[0-9]$'</dl>
+<dl><dt><strong>accept</strong> = re.compile('^[0-9]$')</dl>
 
 <hr>
 Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
@@ -246,7 +246,7 @@ Data and other attributes inherited from <a href="models.html#Validator">Validat
 Data and other attributes defined here:<br>
 <dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
 
-<dl><dt><strong>accept</strong> = r'^(!|\$)[A-Z]+$'</dl>
+<dl><dt><strong>accept</strong> = re.compile('^(!|\\$)[A-Z]+$')</dl>
 
 <hr>
 Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
@@ -279,7 +279,7 @@ Data and other attributes inherited from <a href="models.html#Validator">Validat
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt><a href="#NMEASentence">NMEASentence</a>(msg:&nbsp;str)<br>
 &nbsp;<br>
-NMEA&nbsp;sentence&nbsp;class.&nbsp;It&nbsp;validates&nbsp;a&nbsp;raw&nbsp;string&nbsp;and<br>&nbsp;</tt></td></tr>
+NMEA&nbsp;sentence&nbsp;class.&nbsp;It&nbsp;validates&nbsp;a&nbsp;raw&nbsp;NMEA&nbsp;sentence<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="NMEASentence-__init__"><strong>__init__</strong></a>(self, msg: str)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
@@ -340,7 +340,7 @@ Data and other attributes defined here:<br>
 Data and other attributes defined here:<br>
 <dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
 
-<dl><dt><strong>accept</strong> = '^[ -~]+$'</dl>
+<dl><dt><strong>accept</strong> = re.compile('^[ -~]+$')</dl>
 
 <hr>
 Methods inherited from <a href="models.html#Validator">Validator</a>:<br>
@@ -436,8 +436,10 @@ Data descriptors inherited from <a href="builtins.html#BaseException">builtins.B
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt>Use&nbsp;regex&nbsp;to&nbsp;validate&nbsp;data<br>
 &nbsp;<br>
-:param&nbsp;accept:&nbsp;&nbsp;raw&nbsp;regex&nbsp;to&nbsp;search&nbsp;for<br>
-:param&nbsp;deny:&nbsp;regex&nbsp;that&nbsp;cannot&nbsp;be&nbsp;in&nbsp;the&nbsp;string<br>
+Regexed&nbsp;must&nbsp;be&nbsp;passed&nbsp;already&nbsp;compiler&nbsp;to&nbsp;avoid&nbsp;compiling&nbsp;it<br>
+each&nbsp;time&nbsp;a&nbsp;validator&nbsp;is&nbsp;run.&nbsp;(Benchmark&nbsp;test&nbsp;showed&nbsp;a&nbsp;~50%&nbsp;time&nbsp;saved)<br>
+:param&nbsp;accept:&nbsp;&nbsp;raw&nbsp;regex.compile&nbsp;instance&nbsp;to&nbsp;search&nbsp;for<br>
+:param&nbsp;deny:&nbsp;regex.compile&nbsp;instance&nbsp;that&nbsp;cannot&nbsp;be&nbsp;in&nbsp;the&nbsp;string<br>
 &nbsp;<br>
 :param&nbsp;data:&nbsp;validated&nbsp;string<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>

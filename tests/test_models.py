@@ -28,7 +28,7 @@ class TestValidators(unittest.TestCase):
         start = time()
         self.test_valid_msg()
         end = time() - start
-        self.assertLess(end, 3)
+        self.assertLess(end, 2)
 
     def test_length(self):
         test_str = self.test_str + "1"
