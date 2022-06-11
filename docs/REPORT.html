@@ -1,61 +1,92 @@
 
-<!-- saved from url=(0040)http://127.0.0.1:5050/reports/1/markdown -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><p>REPORTE: 1</p>
+<p>REPORTE: 1</p>
 <p>FECHA: 2022-06-10 08:42:18.013980</p>
 <h1>Objetivo:</h1>
-<h2>Tarea #: 1</h2>
-<pre><code>* Objetivo: Crear una estructura que acepte un mensaje AIS
-
-* Estado: 0
-
-* Prioridad: 10
-
-* Solucion:
-
-
-* Observaciones:
-    Campos:
-        - 1. Tipo: str
-        - 2. numero de framentos: int
-        - 3. # de fragmento: int
-        - 4. Id del mensaje secuencial: int ó ""
-        - 5. Canal de radio: str
-        - 6. Mensaje: str
-        - 7. Fill bits * checksum
-
-
-* Creada: 2022-06-10 08:42:18.006433
-
-* Actualizada: 2022-06-10 09:47:40.458986
-
-* Finalizada: None
-</code></pre>
-<h2>Tarea #: 2</h2>
-<pre><code>* Objetivo: Validadores
-
-* Estado: 0
-
-* Prioridad: 10
-
-* Solucion:
-
-
-* Observaciones:
-    1. longitud: 80
-    2. Validar tipo: empieza por "!" + [A-Z]
-    3. Fragmentos y no. fragmento: [0-9]
-    4. Id del msg secuencial: Union([0-9], "")
-    5. Radio Channel: [A-Z]
-    6. Mensaje: isacii, len &lt; 52
-    7. Fill bits * checksum: [0-9]+\*[A-Z0-9]+
-
-* Creada: 2022-06-10 08:42:18.006433
-
-* Actualizada: 2022-06-10 08:42:18.006499
-
-* Finalizada: None
-</code></pre>
-<hr>
+<h2>Tarea #1</h2>
+<ul>
+<li>
+<p>Objetivo: Crear una estructura que acepte un mensaje AIS</p>
+</li>
+<li>
+<p>Estado: COMPLETADO</p>
+</li>
+<li>
+<p>Prioridad: MEDIA</p>
+</li>
+<li>
+<p>Solucion:
+    URL: <a href="./models.html#NMEASentence">NMEASentence</a>. Lanza <a href="./models.html#ValidationError">ValidationError</a> en caso de que la string pasada al constructor sea inválida</p>
+</li>
+<li>
+<p>Observaciones:</p>
+<ul>
+<li>
+<p>Campos:</p>
+<ol>
+<li>Tipo: str</li>
+<li>numero de framentos: int</li>
+<li>num de fragmento: int</li>
+<li>Id del mensaje secuencial: int ó ""</li>
+<li>Canal de radio: str</li>
+<li>Mensaje: str</li>
+<li>Bits de llenado * checksum</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>Creada: 2022-06-10 08:42:18.006433</p>
+</li>
+<li>
+<p>Actualizada: 2022-06-11 11:09:06.075978</p>
+</li>
+<li>
+<p>Finalizada: 2022-06-11 11:09:06.074692</p>
+</li>
+</ul>
+<h2>Tarea #2</h2>
+<ul>
+<li>
+<p>Objetivo: Validadores</p>
+</li>
+<li>
+<p>Estado: COMPLETADO</p>
+</li>
+<li>
+<p>Prioridad: MAYOR</p>
+</li>
+<li>
+<p>Solucion:</p>
+</li>
+<li>Crear un descriptor de datos para procesar cada campo cuando es asignado y lanzar excepciones descriptivas</li>
+<li>
+<p>URL: <a href="./models.html#Validator">Validator</a></p>
+</li>
+<li>
+<p>Observaciones:</p>
+<ol>
+<li>longitud: 82</li>
+<li>Validar tipo: empieza por "!" + [A-Z]</li>
+<li>Fragmentos y no. fragmento: [0-9]</li>
+<li>Id del msg secuencial: [0-9|]</li>
+<li>Radio Channel: [A-Z0-9|]</li>
+</ol>
+</li>
+<li>Mensaje: acii, len &lt; 52</li>
+<li>
+<p>Fill bits * checksum: [0-9]+*[A-Z0-9]+</p>
+</li>
+<li>
+<p>Creada: 2022-06-10 08:42:18.006433</p>
+</li>
+<li>
+<p>Actualizada: 2022-06-11 10:23:25.832957</p>
+</li>
+<li>
+<p>Finalizada: 2022-06-11 10:23:25.832578</p>
+</li>
+</ul>
+<hr />
 <h1>Observaciones:</h1>
 <h2>Overall</h2>
 <p>AIS data is encapsulated within the Marine Standard NMEA protocol, which defines Standands for communication between wired electonic ship devices. NMEA defines many different sentences, two of which are normally used for containing AIS data named !AIVDM and !AIVDO. The content of both these sentences are identical (!AIVDM is transmitted, !AIVDO is on board). 2022-06-10 08:42:18.013980</p>
@@ -74,4 +105,4 @@ Because the permitted characters in a NMEA sentence are a subset of the 8-bit </
 - Radio Channel: char, [A-Z]
 - Payload: ascii chars, len &lt; 51
 - checksum: Hexa, [0-9]\*[0-9A-Z]+
-</code></pre></body></html>
+</code></pre>

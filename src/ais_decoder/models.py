@@ -66,7 +66,7 @@ class CheckSumValidator(Validator): # pylint: disable=R0903
     accept = r"^[0-9]\*[A-Z0-9]{2}$"
 
 class NMEASentence: #pylint: disable=R0902,R0903
-    """NMEA sentence class. It validates a raw string and """
+    """NMEA sentence class. It validates a raw NMEA sentence """
     # numerical fields could be coerced to string if needed
     msg_type: str = MsgTypeValidator()
     num_fragments: str = DigitValidator()
@@ -106,8 +106,8 @@ class NMEASentence: #pylint: disable=R0902,R0903
             try:
                 rep += getattr(self, val)
             except AttributeError:
-                # not set yet, validation error
-                rep += "Not-Set"
+                # not yet set, validation error
+                rep += "(Not Set)"
             if "*" not in val:
                 # not last
                 rep += ","
