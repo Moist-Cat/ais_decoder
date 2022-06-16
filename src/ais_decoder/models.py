@@ -71,9 +71,9 @@ class NMEASentence: #pylint: disable=R0902,R0903
     """NMEA sentence class. It validates a raw NMEA sentence """
     # numerical fields could be coerced to string if needed
     msg_type: str = MsgTypeValidator()
-    num_fragments: str = DigitValidator()
-    num_fragment: str = DigitValidator()
-    id_msg: str = DigitOrEmptyValidator()
+    fragments: str = DigitValidator()
+    fragment_num: str = DigitValidator()
+    msg_id: str = DigitOrEmptyValidator()
     radio_channel: str = AlphanumOrEmptyValidator()
     payload: str = PayloadValidator()
     checksum: str = CheckSumValidator()
@@ -81,9 +81,9 @@ class NMEASentence: #pylint: disable=R0902,R0903
     # data fields
     __fields__ = (
         "msg_type",
-        "num_fragments",
-        "num_fragment",
-        "id_msg",
+        "fragments",
+        "fragment_num",
+        "msg_id",
         "radio_channel",
         "payload",
         "checksum"
@@ -97,7 +97,7 @@ class NMEASentence: #pylint: disable=R0902,R0903
             raise ValidationError(f"Message too long. It must not be longer than 82, got {msg_len}\n{msg}")
         chunks = msg.split(",")
         try:
-            self.msg_type, self.num_fragments, self.num_fragment, self.id_msg, self.radio_channel, self.payload, self.checksum = chunks # pylint: disable=C0301
+            self.msg_type, self.fragments, self.fragment_num, self.msg_id, self.radio_channel, self.payload, self.checksum = chunks # pylint: disable=C0301
         except ValueError as exc:
             raise ValidationError(f"Too many/few fields. Expected 7, got {len(chunks)}. {chunks}") from exc
         self.timestamp: datetime = datetime.now()
@@ -114,3 +114,6 @@ class NMEASentence: #pylint: disable=R0902,R0903
                 # not last
                 rep += ","
         return rep
+
+    def as_dict(self):
+        return {key: getattr(self, key) for key in self.__fields__}

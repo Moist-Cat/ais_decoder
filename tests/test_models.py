@@ -51,7 +51,7 @@ class TestValidators(unittest.TestCase):
 
         self.assertRaises(ValidationError, self.msg, test_str)
 
-        test_str = self.test_str.replace("*", "#").replace("0", "A")
+        test_str = self.test_str.replace("0", "A")
 
         self.assertRaises(ValidationError, self.msg, test_str)
 
@@ -65,7 +65,7 @@ class TestValidators(unittest.TestCase):
 
         self.assertRaises(ValidationError, self.msg, test_str)
 
-    def test_radio_channel_validator(self):
+    def test_radio_msg_id_validator(self):
         test_str = self.test_str.replace("5", "")
 
         self.msg(test_str)
