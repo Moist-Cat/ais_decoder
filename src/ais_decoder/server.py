@@ -16,16 +16,20 @@ class TCPHandler(socketserver.BaseRequestHandler):
             file.write(jdata + "\n")
         return self.request.sendall(b"201,")
 
-if __name__ == "__main__":
-    HOST, PORT = "localhost", 9999
-
-    with socketserver.TCPServer((HOST, PORT), TCPHandler) as server:
+def runserver(host = "localhost", port = 9999):
+    with socketserver.TCPServer((host, port), TCPHandler) as server:
         thread = threading.Thread(target=server.serve_forever)
         thread.daemon = True
         thread.start()
+        print(f"Running socket server on {host}:{port}")
 
         try:
             while True:
                 pass
         except KeyboardInterrupt:
             server.shutdown()
+
+if __name__ == "__main__":
+    HOST, PORT = "localhost", 9999
+
+    runserver(HOST, PORT)

@@ -8,7 +8,7 @@ from ais_decoder.models import NMEASentence, ValidationError
 
 class Client():
 
-    def __init__(self, ip: str, port: int) -> Tuple[int, str]:
+    def __init__(self, ip: str=None, port: int=None) -> Tuple[int, str]:
         self.ip= ip or os.environ.get("AIS_SERVER_URL", "localhost")
         self.port = port or os.environ.get("AIS_SERVER_PORT", 9999)
 

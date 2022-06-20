@@ -4,19 +4,20 @@ from pathlib import Path
 with open("README.md", "r") as file:
     long_description = file.read()
 
-#with open("requirements.txt") as file:
-#    REQUIREMENTS = file.read().split("\n")
+with open("requirements.txt") as file:
+    REQUIREMENTS = file.read().split("\n")
 
 setuptools.setup(
      name="ais_decoder",  
-     version="0.1.0",
+     version="0.2.0",
      author="Moist-Cat",
      author_email="moistanonpy@gmail.com",
      description="AIS message processing tool",
      long_description=long_description,
+     script="ais_decoder",
    long_description_content_type="text/markdown",
      url="https://github.com/Moist-Cat/",
-#     install_requires=REQUIREMENTS,
+     install_requires=REQUIREMENTS,
      include_package_data=True,
      package_dir={"":"src"},
      packages=setuptools.find_packages(where="src"),
