@@ -1,0 +1,4 @@
+#!/bin/env python
+from ais_decoder.manage import get_command
+
+get_command()
