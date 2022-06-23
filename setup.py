@@ -14,7 +14,7 @@ setuptools.setup(
      author_email="moistanonpy@gmail.com",
      description="AIS message processing tool",
      long_description=long_description,
-     script="ais_decoder",
+     scripts=["ais_decoder",],
    long_description_content_type="text/markdown",
      url="https://github.com/Moist-Cat/",
      install_requires=REQUIREMENTS,

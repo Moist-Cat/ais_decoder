@@ -2,11 +2,13 @@ from typing import Tuple
 import os
 import json
 
+from requests import Session
 import socket
 
 from ais_decoder.models import NMEASentence, ValidationError
+from ais_decoder.settings import HOST, PORT
 
-class Client():
+class TCPClient:
 
     def __init__(self, ip: str=None, port: int=None) -> Tuple[int, str]:
         self.ip= ip or os.environ.get("AIS_SERVER_URL", "localhost")
@@ -26,3 +28,30 @@ class Client():
             status, text = str(sock.recv(1024), "ascii").split(",")
 
             return (int(status), text)
+
+class HTTPClient(Session):
+    server_url: str = f"http://{HOST}:9999"
+    messages: list = []
+    _last_response = None
+
+    def get_message(self):
+        res = self.get(self.server_url)
+        self._last_response = res
+        try:
+            msg = NMEASentence(res.text)
+        except ValidationError:
+            pass
+        else:
+            self.messages.append(msg)
+        return res
+
+    def send_message(self):
+        res = self.post(self.server_url, json=self.messages.pop().as_dict())
+        self._last_response = res
+
+        return res
+
+if __name__ == "__main__":
+    cli = HTTPClient()
+    print(cli.get_message())
+    print(cli.send_message())

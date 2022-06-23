@@ -116,4 +116,4 @@ class NMEASentence: #pylint: disable=R0902,R0903
         return rep
 
     def as_dict(self):
-        return {key: getattr(self, key) for key in self.__fields__}
+        return {"AVDM": {key: getattr(self, key) for key in self.__fields__}}
