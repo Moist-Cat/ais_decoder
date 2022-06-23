@@ -8,8 +8,8 @@ with open("requirements.txt") as file:
     REQUIREMENTS = file.read().split("\n")
 
 setuptools.setup(
-     name="ais_decoder",  
-     version="0.2.0",
+     name="ais_decoder",
+     version="0.2.1",
      author="Moist-Cat",
      author_email="moistanonpy@gmail.com",
      description="AIS message processing tool",

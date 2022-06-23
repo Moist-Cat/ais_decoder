@@ -11,7 +11,7 @@ Currently:
 
 import sys
 
-from ais_decoder.client import Client
+from ais_decoder.client import HTTPClient
 from ais_decoder.server import runserver
 
 
@@ -24,5 +24,6 @@ def get_command(args = sys.argv[1:]):
     if command == "runserver":
         runserver()
     elif command == "send":
-        c = Client()
-        print(c.send(arg))
+        c = HTTPClient()
+        c.get_message()
+        print(c.send_message())

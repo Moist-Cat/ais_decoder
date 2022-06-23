@@ -1,5 +1,6 @@
 from io import BytesIO
 from uuid import uuid4
+import socket
 import socketserver
 import json
 import threading
@@ -8,6 +9,13 @@ from http.server import BaseHTTPRequestHandler
 
 with open("nmea-sample.txt", "r+b") as file:
     data = file.readlines()
+
+class ReusableTCPServer(socketserver.TCPServer):
+    """Extended TCP server made to avoid *ADDRESS IN USE* errors-"""
+    
+    def server_bind(self):
+        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.socket.bind(self.server_address)
 
 class TCPHandler(socketserver.BaseRequestHandler):
 
@@ -25,9 +33,13 @@ class TCPHandler(socketserver.BaseRequestHandler):
 
 
 class HTTPHandler(BaseHTTPRequestHandler):
-    data = data 
+    """Fetch data from a file, put it on memory, and send
+    one line every time on request """
+    data = data
 
     def read_data(self):
+        """Read the data field from the client using the Content-Length header
+        as a guide"""
         payload_len = int(self.headers.get("Content-Length"))
         return self.rfile.read(payload_len)
 
@@ -39,35 +51,43 @@ class HTTPHandler(BaseHTTPRequestHandler):
         self.wfile.write(string)
 
     def do_POST(self):
+        """Put the buffer from the POST in a file"""
         buffer = self.read_data()
 
-        with open(str(uuid4()) + ".json", "w") as file:
-            try:
-                json.dump(str(buffer), file)
-            except json.decoder.JSONDecodeError:
-                self.send_error(400)
-                return
+        with open(str(uuid4()) + ".json", "w+b") as file:
+            file.write(buffer)
         self.send_response(HTTPStatus.CREATED)
         self.end_headers()
 
-
 def _runserver(handler, host = "localhost", port = 9999):
-    with socketserver.TCPServer((host, port), handler) as server:
-        thread = threading.Thread(target=server.serve_forever)
-        thread.daemon = True
-        thread.start()
-        print(f"Running {handler} server on http://{host}:{port}")
-
-        try:
-            while True:
-                pass
-        except KeyboardInterrupt:
-            print("Shutdown")
-            server.shutdown()
+    """
+    :param handler: Handler object
+    :param host: server ip-address/domain-name
+    :param port: port
+    
+    :return: socket server object"""
+    server = ReusableTCPServer((host, port), handler)
+    thread = threading.Thread(target=server.serve_forever)
+    thread.daemon = True
+    thread.start()
+        
+    return server
 
 def runserver(handler):
+    """Infinite looping for the server and secure closing. Mapping for handler classes."""
     handler_cls = {"TCP": TCPHandler, "HTTP": HTTPHandler}.get(handler)
-    _runserver(handler_cls)
+
+    server = _runserver(handler_cls)
+    
+    print(f"Running {handler} server on http://{host}:{port}")
+    
+    try:
+        while True:
+            pass
+    except KeyboardInterrupt:
+        print("Shutdown")
+        server.shutdown()
+        server.server_close()
 
 if __name__ == "__main__":
     HOST, PORT = "localhost", 9999

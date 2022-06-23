@@ -6,7 +6,6 @@ from requests import Session
 import socket
 
 from ais_decoder.models import NMEASentence, ValidationError
-from ais_decoder.settings import HOST, PORT
 
 class TCPClient:
 
@@ -30,11 +29,19 @@ class TCPClient:
             return (int(status), text)
 
 class HTTPClient(Session):
-    server_url: str = f"http://{HOST}:9999"
+    """
+    :data messages: message queue
+    :data _last_response: for debugging
+    """
     messages: list = []
     _last_response = None
+    
+    def __init__(self, host, port):
+        super().__init__()
+        self.server_url = f"http://{host}:{port}/"
 
     def get_message(self):
+        """Get text from server, validate it and save it in queue"""
         res = self.get(self.server_url)
         self._last_response = res
         try:
@@ -46,6 +53,7 @@ class HTTPClient(Session):
         return res
 
     def send_message(self):
+        """Send messages from queue"""
         res = self.post(self.server_url, json=self.messages.pop().as_dict())
         self._last_response = res
 
