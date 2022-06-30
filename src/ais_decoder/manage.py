@@ -22,8 +22,7 @@ def get_command(args = sys.argv[1:]):
         arg = args[1]
 
     if command == "runserver":
-        runserver()
+        runserver(arg)
     elif command == "send":
         c = HTTPClient()
-        c.get_message()
         print(c.send_message())

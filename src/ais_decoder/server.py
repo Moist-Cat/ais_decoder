@@ -20,16 +20,7 @@ class ReusableTCPServer(socketserver.TCPServer):
 class TCPHandler(socketserver.BaseRequestHandler):
 
     def handle(self):
-        self.data = self.request.recv(1024).strip()
-        print(f"received {self.data}")
-        try:
-            jdata = ",".join(dict(json.loads(self.data)).values())
-        except json.decoder.JSONDecodeError:
-            return self.request.sendall(b"400,JSON decode error")
-
-        with open("nmea-sample.txt", "a") as file:
-            file.write(jdata + "\n")
-        return self.request.sendall(b"201,")
+        return self.request.sendall(data.pop())
 
 
 class HTTPHandler(BaseHTTPRequestHandler):
@@ -73,14 +64,13 @@ def _runserver(handler, host = "localhost", port = 9999):
         
     return server
 
-def runserver(handler):
+def runserver(handler, host, port):
     """Infinite looping for the server and secure closing. Mapping for handler classes."""
     handler_cls = {"TCP": TCPHandler, "HTTP": HTTPHandler}.get(handler)
 
-    server = _runserver(handler_cls)
-    
+    server = _runserver(handler_cls, host, port)
     print(f"Running {handler} server on http://{host}:{port}")
-    
+
     try:
         while True:
             pass
@@ -90,7 +80,8 @@ def runserver(handler):
         server.server_close()
 
 if __name__ == "__main__":
-    HOST, PORT = "localhost", 9999
-    HANDLER = "HTTP"
+    import sys
+    HOST, PORT = "localhost", sys.argv[1:][1]
+    HANDLER = sys.argv[1:][0].upper()
 
-    runserver(HANDLER)
+    runserver(HANDLER, HOST, int(PORT))

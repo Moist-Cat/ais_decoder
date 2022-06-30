@@ -1,8 +1,10 @@
+import asyncio
+from http import HTTPStatus
 from typing import Tuple
 import os
 import json
+import urllib.parse
 
-from requests import Session
 import socket
 
 from ais_decoder.models import NMEASentence, ValidationError
@@ -28,38 +30,56 @@ class TCPClient:
 
             return (int(status), text)
 
-class HTTPClient(Session):
+class HTTPClient:
     """
-    :data messages: message queue
-    :data _last_response: for debugging
+    Asynchronous HTTP client.
     """
-    messages: list = []
-    _last_response = None
     
-    def __init__(self, host, port):
+    def __init__(self, host, port, socket_host="localhost", socket_port=9999):
         super().__init__()
-        self.server_url = f"http://{host}:{port}/"
+        self._socket_host = socket_host
+        self._socket_port = socket_port
+        self.server_url = urllib.parse.urlsplit(f"http://{host}:{port}/")
 
-    def get_message(self):
-        """Get text from server, validate it and save it in queue"""
-        res = self.get(self.server_url)
-        self._last_response = res
-        try:
-            msg = NMEASentence(res.text)
-        except ValidationError:
-            pass
-        else:
-            self.messages.append(msg)
-        return res
+    async def _receive_msg(self):
+        reader, writer = await asyncio.open_connection(self._socket_host, self._socket_port)
+        data = await reader.read(100)
+        msg = NMEASentence(data.decode())
+        return msg 
 
-    def send_message(self):
+    async def send_message(self):
         """Send messages from queue"""
-        res = self.post(self.server_url, json=self.messages.pop().as_dict())
-        self._last_response = res
+        url = self.server_url
+        msg = await self._receive_msg()
+#        if url.scheme == 'https':
+#            reader, writer = await asyncio.open_connection(
+#                url.hostname, 443, ssl=True)
+#        else:
+        reader, writer = await asyncio.open_connection(
+                url.hostname, url.port)
 
-        return res
+        data = json.dumps(msg.as_dict())
+        query = (
+            f"POST {url.path or '/'} HTTP/1.0\r\n"
+            f"Host: {url.hostname}\r\n"
+            f"User-Agent: python/requests2.0.1\r\n"
+            f"Content-Length: {len(data)}\r\n"
+            f"\r\n{data}\r\n"
+        )
+
+        writer.write(query.encode('latin-1'))
+        line = await reader.readline()
+        line = line.decode('latin1').rstrip()
+
+        # Ignore the body, close the socket
+        writer.close()
+
+        return HTTPStatus(int(line.split(" ")[1]))
 
 if __name__ == "__main__":
-    cli = HTTPClient()
-    print(cli.get_message())
-    print(cli.send_message())
+    import sys
+
+    host, port = sys.argv[1:]
+    cli = HTTPClient(host, int(port))
+
+    asyncio.run(cli.send_message())
